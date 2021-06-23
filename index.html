@@ -1,11 +1,49 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>blog_theme_atum</title>
-  </head>
-  <body>
-    <div id="app"></div>
-  </body>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<form action="a.cgi">
+    <table border="1" cellspacing="0" cellpadding="0">
+        <tr>
+            <td>start: <input type="text" id="start" size="3" /></td>
+            <td>end: <input type="text" id="end" size="3" /></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <textarea id="ta" onmousedown="savePos(this)" rows="14" cols="50"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td><input type="text" id="inputtext" /></td>
+            <td><input type="button" onClick="add()" value="Add Text" /></td>
+        </tr>
+    </table>
+</form>
+<body>
+    <script>
+        var start = 0;
+        var end = 0;
+        var textBox = document.getElementById("ta");
+        var pre = textBox.value.substr(0, start);
+        var post = textBox.value.substr(end);
+        function add() {
+            textBox.value = pre + document.getElementById("inputtext").value + post;
+        }
+
+        function savePos(textBox) {
+            //如果是Firefox(1.5)的话，方法很简单 
+            if (typeof (textBox.selectionStart) == "number") {
+                start = textBox.selectionStart;
+                end = textBox.selectionEnd;
+                console.log(start + ": " + end);
+            }
+        }
+    </script>
+
+</body>
+
 </html>
